@@ -10,6 +10,7 @@
 
             ResetBoard(board);
             ShowBoard(board);
+            Console.WriteLine("Player turn: O");
 
             while (Win(board) != "The X's have won!" && Win(board) != "The O's have won!" && Win(board) != "It's a tie!")
             {
@@ -21,6 +22,9 @@
                 Console.WriteLine("\n" + Win(board));
             }
         }
+
+
+
         private static void ShowBoard(string[,] board)
         {
             Console.WriteLine();
@@ -35,7 +39,7 @@
                     if (newLine % 7 == 0) boardLines = boardLines + "|" + "\n";
                 }
             }
-            boardLines = boardLines + "  A   B   C   D   E   F   G";
+            boardLines = boardLines + "  1   2   3   4   5   6   7";
             Console.WriteLine(boardLines);
         }
 
@@ -56,7 +60,7 @@
             char playerInput = Console.ReadKey().KeyChar;
             bool taken = false;
             int token = 5;
-            char[] columnInput = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g' };
+            char[] columnInput = new char[] { '1', '2', '3', '4', '5', '6', '7' };
 
             while (!taken)
             {
@@ -67,7 +71,7 @@
                 {
                     Console.SetCursorPosition(0, 10);
                     Console.Write("\nThis column is either full or does not exist. Try again.");
-                    Console.ReadKey(); 
+                    Console.ReadKey();
                     Console.Write("\r" + new string(' ', Console.BufferWidth) + "\r");
                     Play(board, isPlayerOne);
                     break;
@@ -89,8 +93,8 @@
                     taken = true;
                     Console.SetCursorPosition(0, 0);
                     ShowBoard(board);
-                    if (playerToken == "O") Console.WriteLine("Players turn: X");
-                    else Console.WriteLine("Players turn: O");
+                    if (playerToken == "O") Console.WriteLine("Player turn: X");
+                    else Console.WriteLine("Player turn: O");
                 }
                 else token -= 1;
             }
@@ -99,7 +103,6 @@
         {
             bool hasWon = false;
             string whoWon = "";
-
             string[,] boardWon = new string[25, 1];
 
             int m = 12;
